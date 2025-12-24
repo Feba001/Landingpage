@@ -171,101 +171,102 @@
 </footer>
 
 <script>
-  lucide.createIcons();
+  const TALLY_FORMS={en:"PdpKXd",hu:"7RbXEL"};
+  const AUDIO_FILES={en:"/audio/demo-en.mp3",hu:"/audio/demo-hu.mp3"};
 
-  const TALLY_FORMS = { en: "PdpKXd", hu: "7RbXEL" };
-  const AUDIO_FILES = { en: "/audio/demo-en.mp3", hu: "/audio/demo-hu.mp3" };
-
-  const translations = {
-    en: {
-      tagline: "Dental AI Receptionists",
-      headline: "Never Miss a <span style='color:var(--accent)'>Patient Call</span> Again",
-      sub: "AI receptionists that answer calls, book appointments, and handle patient questions 24/7 — without hiring staff.",
-      audio_title: "Listen to a Real AI Receptionist Demo",
-      problem_title: "Your Front Desk Can’t Answer Every Call",
-      p1: "❌ Missed calls during treatments",
-      p2: "❌ After-hours appointment requests lost",
-      p3: "❌ Staff overwhelmed by routine questions",
-      p4: "❌ High-value procedures never booked",
-      problem_highlight: "Every missed call is lost revenue",
-      problem_desc: "Dental practices lose thousands per month simply because no one answers the phone.",
-      solution_title: "Your AI Dental Receptionist",
-      s1_title: "📞 Answers Every Call",
-      s1_desc: "Instantly responds 24/7 — no voicemail, no hold time.",
-      s2_title: "📅 Books Appointments",
-      s2_desc: "Schedules, reschedules, and confirms appointments automatically.",
-      s3_title: "🦷 Handles Patient Questions",
-      s3_desc: "Insurance, pricing, procedures, directions, and FAQs.",
-      results_title: "Real Results for Dental Practices",
-      r1: "Call Answer Rate",
-      r2: "More Appointments Booked",
-      r3: "Always Available",
-      cta_title: "See It Work in Your Practice",
-      cta_desc: "Book a short demo and find out how many calls you’re missing.",
-      cta_main: "Book a Demo",
-      cta_short: "Book a Demo"
+  const translations={
+    en:{
+      tagline:"Dental AI Receptionists",
+      headline:"Never Miss a <span style='color:var(--accent)'>Patient Call</span> Again",
+      sub:"AI receptionists that answer calls, book appointments, and handle patient questions 24/7 — without hiring staff.",
+      audio_title:"Listen to a Real AI Receptionist Demo",
+      problem_title:"Your Front Desk Can’t Answer Every Call",
+      p1:"❌ Missed calls during treatments",
+      p2:"❌ After-hours appointment requests lost",
+      p3:"❌ Staff overwhelmed by routine questions",
+      p4:"❌ High-value procedures never booked",
+      problem_highlight:"Every missed call is lost revenue",
+      problem_desc:"Dental practices lose thousands per month simply because no one answers the phone.",
+      solution_title:"Your AI Dental Receptionist",
+      s1_title:"📞 Answers Every Call",
+      s1_desc:"Instantly responds 24/7 — no voicemail, no hold time.",
+      s2_title:"📅 Books Appointments",
+      s2_desc:"Schedules, reschedules, and confirms appointments automatically.",
+      s3_title:"🦷 Handles Patient Questions",
+      s3_desc:"Insurance, pricing, procedures, directions, and FAQs.",
+      results_title:"Real Results for Dental Practices",
+      r1:"Call Answer Rate",
+      r2:"More Appointments Booked",
+      r3:"Always Available",
+      cta_title:"See It Work in Your Practice",
+      cta_desc:"Book a short demo and find out how many calls you’re missing.",
+      cta_main:"Book a Demo",
+      cta_short:"Book a Demo"
     },
-    hu: {
-      tagline: "Fogászati AI Recepciós",
-      headline: "Soha ne maradjon le <span style='color:var(--accent)'>beteg hívásról</span>",
-      sub: "AI recepciós, amely hívásokat fogad, időpontot foglal és betegkérdésekre válaszol 0-24.",
-      audio_title: "Hallgassa meg az AI recepciós bemutatót",
-      problem_title: "A recepción nem lehet minden hívást fogadni",
-      p1: "❌ Hívások elvesznek kezelések közben",
-      p2: "❌ Munkaidőn kívüli időpontkérések elvesznek",
-      p3: "❌ A személyzet túlterhelt",
-      p4: "❌ Értékes kezelések nem kerülnek lefoglalásra",
-      problem_highlight: "Minden nem fogadott hívás bevételkiesés",
-      problem_desc: "A fogászati rendelők havonta jelentős bevételt veszítenek az elveszett hívások miatt.",
-      solution_title: "Az Ön AI fogászati recepciósa",
-      s1_title: "📞 Minden hívást fogad",
-      s1_desc: "Azonnali válasz 0-24, várakozás nélkül.",
-      s2_title: "📅 Időpontot foglal",
-      s2_desc: "Automatikus időpontfoglalás és módosítás.",
-      s3_title: "🦷 Betegkérdések kezelése",
-      s3_desc: "Biztosítás, árak, kezelések és gyakori kérdések.",
-      results_title: "Valós eredmények fogászati rendelőknek",
-      r1: "Hívásfogadási arány",
-      r2: "Több lefoglalt időpont",
-      r3: "Mindig elérhető",
-      cta_title: "Nézze meg működés közben",
-      cta_desc: "Foglaljon rövid bemutatót és derítse ki mennyi hívást veszít el.",
-      cta_main: "Bemutató foglalása",
-      cta_short: "Bemutató"
+    hu:{
+      tagline:"Fogászati AI Recepciós",
+      headline:"Soha ne maradjon le <span style='color:var(--accent)'>beteg hívásról</span>",
+      sub:"AI recepciós, amely hívásokat fogad, időpontot foglal és betegkérdésekre válaszol 0-24.",
+      audio_title:"Hallgassa meg az AI recepciós bemutatót",
+      problem_title:"A recepción nem lehet minden hívást fogadni",
+      p1:"❌ Hívások elvesznek kezelések közben",
+      p2:"❌ Munkaidőn kívüli időpontkérések elvesznek",
+      p3:"❌ A személyzet túlterhelt",
+      p4:"❌ Értékes kezelések nem kerülnek lefoglalásra",
+      problem_highlight:"Minden nem fogadott hívás bevételkiesés",
+      problem_desc:"A fogászati rendelők havonta jelentős bevételt veszítenek az elveszett hívások miatt.",
+      solution_title:"Az Ön AI fogászati recepciósa",
+      s1_title:"📞 Minden hívást fogad",
+      s1_desc:"Azonnali válasz 0-24, várakozás nélkül.",
+      s2_title:"📅 Időpontot foglal",
+      s2_desc:"Automatikus időpontfoglalás és módosítás.",
+      s3_title:"🦷 Betegkérdések kezelése",
+      s3_desc:"Biztosítás, árak, kezelések és gyakori kérdések.",
+      results_title:"Valós eredmények fogászati rendelőknek",
+      r1:"Hívásfogadási arány",
+      r2:"Több lefoglalt időpont",
+      r3:"Mindig elérhető",
+      cta_title:"Nézze meg működés közben",
+      cta_desc:"Foglaljon rövid bemutatót és derítse ki mennyi hívást veszít el.",
+      cta_main:"Bemutató foglalása",
+      cta_short:"Bemutató"
     }
   };
 
-  const langBtn = document.getElementById("langBtn");
-  const langMenu = document.getElementById("langMenu");
-  const langLabel = document.getElementById("langLabel");
-  langBtn.addEventListener("click", () => langMenu.classList.toggle("hidden"));
+  const langBtn=document.getElementById("langBtn");
+  const langMenu=document.getElementById("langMenu");
+  const langLabel=document.getElementById("langLabel");
+  langBtn.onclick=()=>langMenu.classList.toggle("hidden");
 
-  function applyLang(lang) {
-    if (!translations[lang]) lang = "en"; // fallback
-    langLabel.textContent = lang.toUpperCase();
-
-    document.querySelectorAll("[data-i18n]").forEach(el => {
-      const key = el.dataset.i18n;
-      if (translations[lang][key] !== undefined) {
-        el.innerHTML = translations[lang][key];
-      }
+  function applyLang(lang){
+    langLabel.textContent=lang.toUpperCase();
+    document.querySelectorAll("[data-i18n]").forEach(el=>{
+      el.innerHTML=translations[lang][el.dataset.i18n];
     });
-
-    document.querySelectorAll(".tally-btn").forEach(btn => {
-      btn.setAttribute("data-tally-open", TALLY_FORMS[lang]);
-      btn.setAttribute("data-tally-overlay", "1");
+    document.querySelectorAll(".tally-btn").forEach(btn=>{
+      btn.setAttribute("data-tally-open",TALLY_FORMS[lang]);
+      btn.setAttribute("data-tally-overlay","1");
     });
-
-    const audio = document.getElementById("audioSource");
-    audio.src = AUDIO_FILES[lang];
-    audio.load();
-
-    localStorage.setItem("landing_lang", lang);
+    const audio=document.getElementById("audioSource");
+    audio.src=AUDIO_FILES[lang];
+    audio.parentElement.load();
+    localStorage.setItem("landing_lang",lang);
     langMenu.classList.add("hidden");
   }
 
+  applyLang(localStorage.getItem("landing_lang")||"en");
+</script>
+
+<!-- ====== MISSING PARTS ADDED ====== -->
+<script>
+  // Safely initialize Lucide icons
   document.addEventListener("DOMContentLoaded", () => {
-    applyLang(localStorage.getItem("landing_lang") || "en");
+    lucide.createIcons();
+
+    // Make all reveal elements visible
+    document.querySelectorAll(".reveal").forEach(el => {
+      el.classList.add("visible");
+    });
   });
 </script>
 
