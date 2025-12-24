@@ -255,18 +255,26 @@
   }
 
   applyLang(localStorage.getItem("landing_lang")||"en");
-</script>
 
-<!-- ====== MISSING PARTS ADDED ====== -->
-<script>
-  // Safely initialize Lucide icons
+  // ====== MISSING PARTS ======
+  // Make .reveal elements visible and initialize icons
   document.addEventListener("DOMContentLoaded", () => {
     lucide.createIcons();
-
-    // Make all reveal elements visible
     document.querySelectorAll(".reveal").forEach(el => {
       el.classList.add("visible");
     });
+  });
+
+  // Language switcher helper
+  function setLang(lang){
+    applyLang(lang);
+  }
+
+  // Close language menu when clicking outside
+  document.addEventListener("click", (e) => {
+    if (!langBtn.contains(e.target) && !langMenu.contains(e.target)) {
+      langMenu.classList.add("hidden");
+    }
   });
 </script>
 
