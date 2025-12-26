@@ -50,7 +50,6 @@
 
 <body>
 
-<!-- HEADER -->
 <header class="sticky top-0 z-50 bg-black/80 backdrop-blur border-b border-gray-800">
   <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
     <a href="/" class="text-2xl font-bold interactive">
@@ -63,27 +62,8 @@
   </div>
 </header>
 
-<!-- LANGUAGE SELECTOR -->
-<div class="fixed bottom-6 right-6 z-50">
-  <div class="relative">
-    <button id="langBtn"
-      class="interactive inline-flex items-center px-4 py-3 rounded-xl text-black"
-      style="background:var(--accent)">
-      <i data-lucide="globe" class="w-5 h-5"></i>
-      <span id="langLabel" class="ml-2 font-semibold">EN</span>
-      <i data-lucide="chevron-up" class="w-4 h-4 ml-1"></i>
-    </button>
-    <div id="langMenu"
-      class="hidden absolute bottom-full right-0 mb-2 w-32 rounded-md border border-yellow-400 bg-gray-800">
-      <button onclick="setLang('en')" class="block w-full px-4 py-2 text-left text-gray-300 hover:bg-gray-700">English</button>
-      <button onclick="setLang('hu')" class="block w-full px-4 py-2 text-left text-gray-300 hover:bg-gray-700">Magyar</button>
-    </div>
-  </div>
-</div>
-
 <main class="max-w-7xl mx-auto px-6">
 
-<!-- HERO -->
 <section class="min-h-screen flex items-center text-center py-32">
   <div class="w-full">
     <p class="uppercase tracking-widest text-gray-400 reveal" data-i18n="tagline"></p>
@@ -98,50 +78,11 @@
   </div>
 </section>
 
-<!-- AUDIO DEMO -->
 <section class="py-20 border-t border-gray-800 text-center">
   <h2 class="text-3xl font-bold mb-6 reveal" data-i18n="audio_title"></h2>
   <audio controls class="mx-auto reveal max-w-md">
     <source id="audioSource" src="" type="audio/mp4">
   </audio>
-</section>
-
-<!-- PROBLEM -->
-<section class="py-28 border-t border-gray-800">
-  <div class="grid md:grid-cols-2 gap-16 items-center">
-    <div class="reveal">
-      <h2 class="text-4xl font-bold mb-6" data-i18n="problem_title"></h2>
-      <ul class="space-y-4 text-gray-300 text-lg">
-        <li data-i18n="p1"></li>
-        <li data-i18n="p2"></li>
-        <li data-i18n="p3"></li>
-        <li data-i18n="p4"></li>
-      </ul>
-    </div>
-    <div class="reveal p-10 rounded-3xl border border-gray-700" style="background:var(--card)">
-      <h3 class="text-2xl font-bold mb-4" style="color:var(--accent)" data-i18n="problem_highlight"></h3>
-      <p class="text-gray-300 text-lg" data-i18n="problem_desc"></p>
-    </div>
-  </div>
-</section>
-
-<!-- SOLUTION -->
-<section class="py-28 border-t border-gray-800">
-  <h2 class="text-4xl font-bold text-center mb-16 reveal" data-i18n="solution_title"></h2>
-  <div class="grid md:grid-cols-3 gap-10">
-    <div class="reveal p-8 rounded-2xl bg-gray-800 border border-gray-700">
-      <h3 class="text-xl font-bold mb-3" data-i18n="s1_title"></h3>
-      <p class="text-gray-300" data-i18n="s1_desc"></p>
-    </div>
-    <div class="reveal p-8 rounded-2xl bg-gray-800 border border-gray-700">
-      <h3 class="text-xl font-bold mb-3" data-i18n="s2_title"></h3>
-      <p class="text-gray-300" data-i18n="s2_desc"></p>
-    </div>
-    <div class="reveal p-8 rounded-2xl bg-gray-800 border border-gray-700">
-      <h3 class="text-xl font-bold mb-3" data-i18n="s3_title"></h3>
-      <p class="text-gray-300" data-i18n="s3_desc"></p>
-    </div>
-  </div>
 </section>
 
 </main>
@@ -159,34 +100,43 @@
     hu: "/audio/AI Receptionist Dental Demo HUN.m4a"
   };
 
-  const translations = { /* FULL OBJECT — unchanged from your original */ };
+  const translations = {
+    en: {
+      tagline: "Dental AI Receptionists",
+      headline: "Never Miss a <span style='color:var(--accent)'>Patient Call</span> Again",
+      sub: "AI receptionists that answer calls, book appointments, and handle patient questions 24/7.",
+      audio_title: "Listen to a Real AI Receptionist Demo",
+      cta_main: "Book a Demo",
+      cta_short: "Book a Demo"
+    },
+    hu: {
+      tagline: "Fogászati AI Recepciós",
+      headline: "Soha ne maradjon le <span style='color:var(--accent)'>beteg hívásról</span>",
+      sub: "AI recepciós, amely hívásokat fogad és időpontot foglal 0-24.",
+      audio_title: "Hallgassa meg az AI recepciós bemutatót",
+      cta_main: "Bemutató foglalása",
+      cta_short: "Bemutató"
+    }
+  };
 
-  function applyLang(lang){
-    document.getElementById("langLabel").textContent = lang.toUpperCase();
-
-    document.querySelectorAll("[data-i18n]").forEach(el=>{
+  function applyLang(lang) {
+    document.querySelectorAll("[data-i18n]").forEach(el => {
       el.innerHTML = translations[lang][el.dataset.i18n];
     });
 
-    document.querySelectorAll(".tally-btn").forEach(btn=>{
+    document.querySelectorAll(".tally-btn").forEach(btn => {
       btn.setAttribute("data-tally-open", TALLY_FORMS[lang]);
-      btn.setAttribute("data-tally-overlay","1");
+      btn.setAttribute("data-tally-overlay", "1");
     });
 
     const audio = document.getElementById("audioSource");
     audio.src = AUDIO_FILES[lang];
     audio.parentElement.load();
-
-    localStorage.setItem("landing_lang", lang);
-    document.getElementById("langMenu").classList.add("hidden");
   }
 
-  function setLang(lang){ applyLang(lang); }
+  applyLang("en");
 
-  applyLang(localStorage.getItem("landing_lang") || "en");
-
-  // ✅ Reveal content immediately (NO DOMContentLoaded)
-  document.querySelectorAll(".reveal").forEach(el=>{
+  document.querySelectorAll(".reveal").forEach(el => {
     el.classList.add("visible");
   });
 </script>
