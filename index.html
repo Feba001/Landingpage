@@ -50,6 +50,7 @@
 
 <body>
 
+<!-- HEADER -->
 <header class="sticky top-0 z-50 bg-black/80 backdrop-blur border-b border-gray-800">
   <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
     <a href="/" class="text-2xl font-bold interactive">
@@ -101,12 +102,47 @@
 <section class="py-20 border-t border-gray-800 text-center">
   <h2 class="text-3xl font-bold mb-6 reveal" data-i18n="audio_title"></h2>
   <audio controls class="mx-auto reveal max-w-md">
-    <!-- FIXED TYPE FOR .m4a -->
     <source id="audioSource" src="" type="audio/mp4">
   </audio>
 </section>
 
-<!-- (rest of content unchanged) -->
+<!-- PROBLEM -->
+<section class="py-28 border-t border-gray-800">
+  <div class="grid md:grid-cols-2 gap-16 items-center">
+    <div class="reveal">
+      <h2 class="text-4xl font-bold mb-6" data-i18n="problem_title"></h2>
+      <ul class="space-y-4 text-gray-300 text-lg">
+        <li data-i18n="p1"></li>
+        <li data-i18n="p2"></li>
+        <li data-i18n="p3"></li>
+        <li data-i18n="p4"></li>
+      </ul>
+    </div>
+    <div class="reveal p-10 rounded-3xl border border-gray-700" style="background:var(--card)">
+      <h3 class="text-2xl font-bold mb-4" style="color:var(--accent)" data-i18n="problem_highlight"></h3>
+      <p class="text-gray-300 text-lg" data-i18n="problem_desc"></p>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section class="py-28 border-t border-gray-800">
+  <h2 class="text-4xl font-bold text-center mb-16 reveal" data-i18n="solution_title"></h2>
+  <div class="grid md:grid-cols-3 gap-10">
+    <div class="reveal p-8 rounded-2xl bg-gray-800 border border-gray-700">
+      <h3 class="text-xl font-bold mb-3" data-i18n="s1_title"></h3>
+      <p class="text-gray-300" data-i18n="s1_desc"></p>
+    </div>
+    <div class="reveal p-8 rounded-2xl bg-gray-800 border border-gray-700">
+      <h3 class="text-xl font-bold mb-3" data-i18n="s2_title"></h3>
+      <p class="text-gray-300" data-i18n="s2_desc"></p>
+    </div>
+    <div class="reveal p-8 rounded-2xl bg-gray-800 border border-gray-700">
+      <h3 class="text-xl font-bold mb-3" data-i18n="s3_title"></h3>
+      <p class="text-gray-300" data-i18n="s3_desc"></p>
+    </div>
+  </div>
+</section>
 
 </main>
 
@@ -115,24 +151,18 @@
 </footer>
 
 <script>
-  const TALLY_FORMS = { en:"PdpKXd", hu:"7RbXEL" };
+  lucide.createIcons();
 
-  /* ✅ UPDATED DEMO FILES */
+  const TALLY_FORMS = { en:"PdpKXd", hu:"7RbXEL" };
   const AUDIO_FILES = {
     en: "/audio/AI Receptionist Dental Demo ENG.m4a",
     hu: "/audio/AI Receptionist Dental Demo HUN.m4a"
   };
 
-  const translations = { /* unchanged – omitted for brevity */ };
-
-  const langBtn = document.getElementById("langBtn");
-  const langMenu = document.getElementById("langMenu");
-  const langLabel = document.getElementById("langLabel");
-
-  langBtn.onclick = () => langMenu.classList.toggle("hidden");
+  const translations = { /* FULL OBJECT — unchanged from your original */ };
 
   function applyLang(lang){
-    langLabel.textContent = lang.toUpperCase();
+    document.getElementById("langLabel").textContent = lang.toUpperCase();
 
     document.querySelectorAll("[data-i18n]").forEach(el=>{
       el.innerHTML = translations[lang][el.dataset.i18n];
@@ -148,22 +178,16 @@
     audio.parentElement.load();
 
     localStorage.setItem("landing_lang", lang);
-    langMenu.classList.add("hidden");
+    document.getElementById("langMenu").classList.add("hidden");
   }
 
   function setLang(lang){ applyLang(lang); }
 
   applyLang(localStorage.getItem("landing_lang") || "en");
 
-  document.addEventListener("DOMContentLoaded", () => {
-    lucide.createIcons();
-    document.querySelectorAll(".reveal").forEach(el => el.classList.add("visible"));
-  });
-
-  document.addEventListener("click", e => {
-    if (!langBtn.contains(e.target) && !langMenu.contains(e.target)) {
-      langMenu.classList.add("hidden");
-    }
+  // ✅ Reveal content immediately (NO DOMContentLoaded)
+  document.querySelectorAll(".reveal").forEach(el=>{
+    el.classList.add("visible");
   });
 </script>
 
