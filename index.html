@@ -101,8 +101,9 @@
 <!-- AUDIO DEMO -->
 <section class="py-20 border-t border-gray-800 text-center">
   <h2 class="text-3xl font-bold mb-6 reveal" data-i18n="audio_title"></h2>
-  <audio controls preload="metadata" class="mx-auto reveal max-w-md">
-    <source id="audioSource" src="audio" type="audio/mpeg">
+  <audio id="audioPlayer" controls preload="metadata" class="mx-auto reveal max-w-md">
+    <source id="audioSource" src="audio/AI-Receptionist-Dental-Demo-ENG.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
   </audio>
 </section>
 
@@ -192,22 +193,32 @@
 
   function setLang(lang){
     langLabel.textContent = lang.toUpperCase();
+
+    // Update text translations
     document.querySelectorAll("[data-i18n]").forEach(el=>{
       el.innerHTML = translations[lang][el.dataset.i18n];
     });
+
+    // Update Tally buttons
     document.querySelectorAll(".tally-btn").forEach(btn=>{
       btn.setAttribute("data-tally-open", TALLY_FORMS[lang]);
       btn.setAttribute("data-tally-overlay","1");
     });
-    const audio = document.getElementById("audioSource");
-    audio.src = AUDIO_FILES[lang];
-    audio.parentElement.load();
+
+    // Update audio demo
+    const audioSource = document.getElementById("audioSource");
+    audioSource.src = AUDIO_FILES[lang];
+    document.getElementById("audioPlayer").load();
+
+    // Save language
     localStorage.setItem("landing_lang", lang);
     langMenu.classList.add("hidden");
   }
 
+  // Set language on page load
   setLang(localStorage.getItem("landing_lang") || "en");
 
+  // Reveal animations
   document.querySelectorAll(".reveal").forEach(el => el.classList.add("visible"));
 </script>
 
